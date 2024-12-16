@@ -1,0 +1,35 @@
+{% extends "custom_app/base.html" %}
+
+{% load static %}
+
+{% block title %} User Account {% endblock %}
+
+{% block body %} 
+
+    {% if registration_success %}<h3 class="text-center pt-5"><strong>{{ registration_success }}</strong></h3>{% endif %}
+    <div class="d-flex justify-content-center">
+        <h1>Login Successful</h1>
+    </div>
+    <div class="text-center mt-5">
+        <h3>Username: {{user.username}}</h3>
+        <h3>Firstname: {{user.first_name}}</h3>
+        <h3>Lastname: {{user.last_name}}</h3>
+        <h3>Email: {{user.email}}</h3>
+        <h3>Gender: {{user_person.gender}}</h3>
+        <h3>Hobby: {{user_person.hobby}}</h3>
+        <h3>Date of Birth: {{user_person.date_of_birth}}</h3>
+    </div>
+    <form class="d-flex justify-content-center" method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-center mt-5">
+            <a href="{% url 'custom_app:home' %}" class="text-white">
+                <button type="button" class="submit btn btn-success m-2" id="submit">Home</button>
+                
+            </a>
+                <button type="submit" class="submit btn btn-danger m-2" id="logout" name="logout">Logout</button>
+            <a href="{% url 'custom_app:forget_password_page' %}" class="text-white">
+                <button type="button" class="submit btn btn-success m-2" id="submit">Change Password</button>
+            </a>
+        </div>
+    </form>
+{% endblock %}
